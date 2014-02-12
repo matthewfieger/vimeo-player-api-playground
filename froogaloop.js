@@ -1,4 +1,4 @@
-alert('Remove this line before using in production!');
+// alert('Remove this line before using in production!');
 
 // Init style shamelessly stolen from jQuery http://jquery.com
 var Froogaloop = (function(){
