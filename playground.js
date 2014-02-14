@@ -1,14 +1,19 @@
+
+
 (function(){
+    console.log("Initialized \'playground.js\' (Line 1)")
+    // Listen for the ready event for any Vimeo video players on the page
+    var vimeoPlayers = document.querySelectorAll('iframe'), // Select all 'iframe' tags, and assign to 'vimeoPlayers' variable
+        player; // Also declare another new variable called 'player'
+        console.log("Found " + vimeoPlayers.length + " video on the page. (Line 6)")  // DEBUG
 
-    // Listen for the ready event for any vimeo video players on the page
-    var vimeoPlayers = document.querySelectorAll('iframe'),
-        player;
-        console.log(vimeoPlayers)
-
+    // For each video, listen for when it is ready, and then call the 'ready' function on the video
     for (var i = 0, length = vimeoPlayers.length; i < length; i++) {
         player = vimeoPlayers[i];
-        $f(player).addEvent('ready', ready);
+        $f(player).addEvent('ready', ready);  // Registers an event listener for the 'ready' event and calls the 'ready' event handler function on player
+        console.log("Registered an event for the \'" + player['id'] + "\' video. (Line 8-11)"); // DEBUG
     }
+
 
     /**
      * Utility function for adding an event. Handles the inconsistencies
@@ -16,13 +21,15 @@
      * IE's (attachEvent).
      */
     function addEvent(element, eventName, callback) {
-        if (element.addEventListener) {
-            element.addEventListener(eventName, callback, false);
+        // console.log("Called the \'addEvent\' utility function on the " + element + " element after the " + eventName + " fired, and sent it to the " + callback +  " callback function."); // DEBUG
+        if (element.addEventListener) { // Test to see if the 'addEventListener' works
+            element.addEventListener(eventName, callback, false); // The first argument specifies the event to listen for, the second argument specifies the handler function and the third argument false specifies that the event capturing phase should not be used, and the event should be handled during the bubbling phase of the event propagation.
         }
-        else {
+        else { // Otherwise, use the 'attachedEvent' method
             element.attachEvent(eventName, callback, false);
         }
     }
+
 
     /**
      * Called once a vimeo player is loaded and ready to receive
@@ -31,15 +38,18 @@
      */
     function ready(player_id) {
         // Keep a reference to Froogaloop for this player
-        var container = document.getElementById(player_id).parentNode.parentNode,
-            froogaloop = $f(player_id),
-            apiConsole = container.querySelector('.console .output');
+        var container = document.getElementById(player_id).parentNode.parentNode, // Access the node with id="player_id" , which is the video's iframe, moves up two nodes in the document tree, which is the class="container" element, and assigns that to the container variable
+            froogaloop = $f(player_id), // Calls froogaloop on the video, and assigns that to the froogaloop variable
+            apiConsole = container.querySelector('.console .output'); // Select the output console in this videos container, and assign that to the apiConsole variable
+        console.log("Accessed the container node for the " + player_id + " video."); // DEBUG
+        console.log("Called the froogaloop API on the " + player_id + " video.") // DEBUG
 
         /**
          * Prepends log messages to the example console for you to see.
          */
         function apiLog(message) {
-            apiConsole.innerHTML = message + '\n' + apiConsole.innerHTML;
+            apiConsole.innerHTML = message + '\n' + apiConsole.innerHTML; // Take a message argument and compound add HTML inside the apiConsole element, which is '.console .output' element
+            console.log('Adding a message to the console: ' + message)
         }
 
         /**
@@ -49,10 +59,18 @@
          * return no values.
          */
         function setupSimpleButtons() {
-            var buttons = container.querySelector('div dl.simple'),
-                playBtn = buttons.querySelector('.play'),
-                pauseBtn = buttons.querySelector('.pause'),
-                unloadBtn = buttons.querySelector('.unload');
+            var buttons = container.querySelector('div dl.simple'), // Access the node containing the simple buttons
+                playBtn = buttons.querySelector('.play'), // Assign the play button to a variable
+                pauseBtn = buttons.querySelector('.pause'), // Assign the pause button to a variable
+                unloadBtn = buttons.querySelector('.unload'); // Assign the unload button to a variable
+            console.log("Assigned the simple buttons to variables.") // DEBUG
+
+
+            /**
+            * Using our 'addEvent' utility function from above, call froogaloop API methods when the buttons are clicked.
+            * We have already called the froogaloop API on our specific video, and assigned it to the 'froogaloop' variable.
+            * We can now call froogaloop's methods on the video.
+            */
 
             // Call play when play button clicked
             addEvent(playBtn, 'click', function() {

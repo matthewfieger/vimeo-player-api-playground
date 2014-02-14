@@ -8,6 +8,6 @@ They suggest that you either host the JS file yourself, or link to our official 
 
 [http://a.vimeocdn.com/js/froogaloop2.min.js](http://a.vimeocdn.com/js/froogaloop2.min.js)
 
-For more information on the JS API, see [Vimeo's player documentation page](https://developer.vimeo.com/player/js-api).
+For more information on the Vimeo's Player JS API, see [the official documentation page](https://developer.vimeo.com/player/js-api).
 
-For live version of this playground example, see [here](http://player.vimeo.com/playground).
+For live version of this example, see [here](http://player.vimeo.com/playground).
