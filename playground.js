@@ -49,7 +49,7 @@
          */
         function apiLog(message) {
             apiConsole.innerHTML = message + '\n' + apiConsole.innerHTML; // Take a message argument and compound add HTML inside the apiConsole element, which is '.console .output' element
-            console.log('Adding a message to the console: ' + message)
+            console.log('Called our \'apiLog\' function and added this message to the console: ' + message + '. (Line 52)') // DEBUG
         }
 
         /**
@@ -72,17 +72,17 @@
             * We can now call froogaloop's methods on the video.
             */
 
-            // Call play when play button clicked
+            // Call play method when play button clicked
             addEvent(playBtn, 'click', function() {
                 froogaloop.api('play');
             }, false);
 
-            // Call pause when pause button clicked
+            // Call pause method when pause button clicked
             addEvent(pauseBtn, 'click', function() {
                 froogaloop.api('pause');
             }, false);
 
-            // Call unload when unload button clicked
+            // Call unload method when unload button clicked
             addEvent(unloadBtn, 'click', function() {
                 froogaloop.api('unload');
             }, false);
@@ -94,24 +94,31 @@
          * take a parameter, such as a color value when setting a color.
          */
         function setupModifierButtons() {
-            var buttons = container.querySelector('div dl.modifiers'),
-                seekBtn = buttons.querySelector('.seek'),
-                volumeBtn = buttons.querySelector('.volume'),
-                loopBtn = buttons.querySelector('.loop'),
-                colorBtn = buttons.querySelector('.color'),
-                randomColorBtn = buttons.querySelector('.randomColor');
+            var buttons = container.querySelector('div dl.modifiers'),  // Access the node containing the modifier buttons
+                seekBtn = buttons.querySelector('.seek'), // Assign the seek button to a variable
+                volumeBtn = buttons.querySelector('.volume'), // Assign the volume button to a variable
+                loopBtn = buttons.querySelector('.loop'), // Assign the loop button to a variable
+                colorBtn = buttons.querySelector('.color'), // Assign the color button to a variable
+                randomColorBtn = buttons.querySelector('.randomColor');  // Assign the random color button to a variable
 
             // Call seekTo when seek button clicked
             addEvent(seekBtn, 'click', function(e) {
+            	// seekBtn is where we listen for an event, on a click event, we send that event to our callback function
+                // 'e' is the MoustEvent object and e.target is the button.seek element, excluding any inner html
+                // 'this' is the HTML Button Element 'seekBTN'
+                console.log("Checked to see if the seek button was clicked");
+
                 // Don't do anything if clicking on anything but the button (such as the input field)
                 if (e.target != this) {
+                	// If the innerHTML part of the button is clicked, the target attribute of the click event will not equal the button part of seekBtn
                     return false;
                 }
 
                 // Grab the value in the input field
-                var seekVal = this.querySelector('input').value;
+                var seekVal = this.querySelector('input').value;  // Access the value attribute of the input element of seekBtn and assign it to a new variable
 
-                // Call the api via froogaloop
+                // Now that we have registered the event, and captured the value, we can call the api via froogaloop
+                // We include the seekVal parameter in this API call
                 froogaloop.api('seekTo', seekVal);
             }, false);
 
@@ -165,6 +172,7 @@
                 }
 
                 // Generate a random color
+                // Same as above but use a random color instead of grabbing the input value
                 var colorVal = Math.floor(Math.random() * 16777215).toString(16);
 
                 // Call the api via froogaloop
@@ -194,6 +202,8 @@
             addEvent(timeBtn, 'click', function(e) {
                 froogaloop.api('getCurrentTime', function (value, player_id) {
                     // Log out the value in the API Console
+                    // This method sends a value and a player_id into a callback function.  Using the callback function we can then do things with those values.
+                    // We could also log out the player_id, but we don't need to since there is a separate console for each player on the page
                     apiLog('getCurrentTime : ' + value);
                 });
             }, false);

@@ -14,13 +14,13 @@
                 <div>
                     <h2>Vimeo Player 1</h2>
                     <iframe id="player_1" src="http://player.vimeo.com/video/7100569?api=1&amp;player_id=player_1" width="540" height="304" frameborder="0"></iframe>
-                    <dl class="simple">
+                    <dl class="simple">  <!-- SIMPLE BUTTONS -->
                         <dt>Simple Buttons <span>(buttons with simple API calls)</span></dt>
                         <dd><button class="play">Play</button></dd>
                         <dd><button class="pause">Pause</button></dd>
                         <dd><button class="unload">Unload</button></dd>
                     </dl>
-                    <dl class="modifiers">
+                    <dl class="modifiers"> <!-- MODIFIER BUTTONS -->
                         <dt>Modifier Buttons <span>(buttons that modify the player)</span></dt>
                         <dd><button class="seek">Seek <input type="text" value="30" size="3" maxlength="3" /></button></dd>
                         <dd><button class="volume">Volume <input type="text" value="0.5" size="3" maxlength="3" /></button></dd>
@@ -28,7 +28,7 @@
                         <dd><button class="color">Color <input type="text" value="00adef" size="5" /></button></dd>
                         <dd><button class="randomColor">Random Color</button></dd>
                     </dl>
-                    <dl class="getters">
+                    <dl class="getters"> <!-- GETTER BUTTONS -->
                         <dt>Getters <span>(buttons that get back a value; logged out in the console)</span></dt>
                         <dd><button class="time">Current Time</button></dd>
                         <dd><button class="duration">Duration</button></dd>
@@ -40,14 +40,14 @@
                         <dd><button class="height">Video Height</button></dd>
                         <dd><button class="width">Video Width</button></dd>
                     </dl>
-                    <dl class="listeners">
-                        <dt>Event Listeners</dt>
-                        <dd><label><input class="loadProgress" type="checkbox" checked />loadProgress</label></dd>
-                        <dd><label><input class="playProgress" type="checkbox" checked />playProgress</label></dd>
-                        <dd><label><input class="play" type="checkbox" checked />play</label></dd>
-                        <dd><label><input class="pause" type="checkbox" checked />pause</label></dd>
-                        <dd><label><input class="finish" type="checkbox" checked />finish</label></dd>
-                        <dd><label><input class="seek" type="checkbox" checked />seek</label></dd>
+                    <dl class="listeners"> <!-- EVENT LISTENERS -->
+                        <dt>Event Listeners <span>(checkboxes that toggle event listeners; logged out in the console)</span></dt>
+                        <dd><label><input class="loadProgress" type="checkbox" />loadProgress</label></dd> <!-- Unchecked at load -->
+                        <dd><label><input class="playProgress" type="checkbox" />playProgress</label></dd> <!-- Unchecked at load -->
+                        <dd><label><input class="play" type="checkbox" checked />play</label></dd> <!-- Checked at load -->
+                        <dd><label><input class="pause" type="checkbox" checked />pause</label></dd> <!-- Checked at load -->
+                        <dd><label><input class="finish" type="checkbox" checked />finish</label></dd> <!-- Checked at load -->
+                        <dd><label><input class="seek" type="checkbox" checked />seek</label></dd> <!-- Check at load -->
                     </dl>
                     <dl class="console">
                         <dt>Console</dt>
