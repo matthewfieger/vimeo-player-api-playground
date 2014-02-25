@@ -1,5 +1,4 @@
 
-
 (function(){
     console.log("Initialized \'playground.js\' (Line 1)")
     // Listen for the ready event for any Vimeo video players on the page
@@ -70,6 +69,7 @@
             * Using our 'addEvent' utility function from above, call froogaloop API methods when the buttons are clicked.
             * We have already called the froogaloop API on our specific video, and assigned it to the 'froogaloop' variable.
             * We can now call froogaloop's methods on the video.
+            * We want our event handler to return false so that the event doesn't bubble up
             */
 
             // Call play method when play button clicked
